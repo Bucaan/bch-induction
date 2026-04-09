@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCH Staff & Volunteer Induction 2024–2025</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;color:#222;background:#f4f6f9;padding:1rem}
+.b{max-width:840px;margin:0 auto;padding:1rem 1.25rem 3rem}
+.hero{background:linear-gradient(135deg,#1a5fa8 60%,#e87722 100%);border-radius:16px;padding:2.5rem 2rem 2rem;margin-bottom:2rem}
+.hero h1{color:#fff;font-size:24px;font-weight:600;margin-bottom:0.5rem}
+.hero .sub{color:rgba(255,255,255,0.85);font-size:14px;margin-bottom:1.25rem}
+.hero .pills{display:flex;flex-wrap:wrap;gap:8px}
+.hero .pill{background:rgba(255,255,255,0.18);color:#fff;font-size:12px;font-weight:500;padding:4px 12px;border-radius:99px;border:1px solid rgba(255,255,255,0.3)}
+.aoc{background:#1a5fa8;border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:2rem}
+.aoc p{color:rgba(255,255,255,0.9);font-size:13px;font-style:italic;line-height:1.7}
+.step-nav{display:flex;overflow-x:auto;gap:6px;margin-bottom:1.5rem;padding-bottom:4px}
+.step-btn{flex-shrink:0;font-size:12px;font-weight:600;padding:6px 14px;border-radius:99px;border:1px solid #ccc;background:#fff;color:#555;cursor:pointer;white-space:nowrap}
+.step-btn.active{background:#1a5fa8;border-color:#1a5fa8;color:#fff}
+.step-section{display:none}
+.step-section.visible{display:block}
+.sec-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#888;border-bottom:1px solid #ddd;padding-bottom:6px;margin-bottom:1rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:14px;padding:1rem 1.25rem;margin-bottom:0.75rem}
+.card-title{font-size:15px;font-weight:600;margin-bottom:6px;color:#1a1a1a}
+.card p{font-size:14px;color:#444;margin-bottom:6px;line-height:1.65}
+.card p:last-child{margin-bottom:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem}
+.val-card{background:#fff;border:1px solid #e0e0e0;border-radius:14px;padding:0.85rem 1rem;text-align:center}
+.val-icon{font-size:24px;margin-bottom:6px;display:block}
+.val-title{font-size:13px;font-weight:600;color:#1a5fa8;margin-bottom:4px}
+.val-desc{font-size:12px;color:#555;line-height:1.5}
+.accent-card{background:#fff;border:2px solid #e87722;border-radius:14px;padding:1rem 1.25rem;margin-bottom:0.75rem}
+.accent-card .card-title{color:#c05a00}
+.red-card{background:#fff5f5;border:2px solid #e24b4a;border-radius:14px;padding:1rem 1.25rem;margin-bottom:0.75rem}
+.red-card .card-title{color:#a32d2d}
+.red-card p{color:#7a2020}
+.purple-card{background:#fff;border:2px solid #7f77dd;border-radius:14px;padding:1rem 1.25rem;margin-bottom:0.75rem}
+.purple-card .card-title{color:#3c3489}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:99px;margin-bottom:8px}
+.b-blue{background:#e6f1fb;color:#0c447c}
+.b-orange{background:#faeeda;color:#854f0b}
+.b-green{background:#eaf3de;color:#3b6d11}
+.b-purple{background:#eeedfe;color:#3c3489}
+.b-teal{background:#e1f5ee;color:#0f6e56}
+.b-red{background:#fde8e8;color:#a32d2d}
+.stat-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0.75rem;margin-bottom:1rem}
+.stat-box{background:#f0f4f9;border-radius:10px;padding:0.75rem 1rem;text-align:center}
+.stat-num{font-size:22px;font-weight:700;color:#1a5fa8;display:block}
+.stat-lbl{font-size:12px;color:#666;margin-top:2px}
+.access-box{display:flex;gap:12px;align-items:flex-start;background:#f4f6f9;border-radius:10px;padding:0.85rem 1rem;margin-bottom:0.75rem}
+.access-dot{width:36px;height:36px;border-radius:10px;background:#e6f1fb;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.access-title{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:2px}
+.access-sub{font-size:13px;color:#555}
+.pol-group{margin-bottom:1.25rem}
+.pol-group-title{font-size:12px;font-weight:700;color:#1a5fa8;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;padding-bottom:4px;border-bottom:1px solid #d0e4f7}
+.pol-row{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
+.pol-row:last-child{border-bottom:none}
+.pol-code{color:#0c447c;font-weight:700;min-width:105px;flex-shrink:0;font-family:monospace;font-size:11px;padding-top:1px}
+.pol-name{color:#1a1a1a;flex:1;font-weight:600;font-size:13px}
+.pol-desc{color:#555;font-size:12px;margin-top:2px;font-weight:400}
+.day-label{font-size:12px;font-weight:700;color:#e87722;margin:0.75rem 0 0.25rem;text-transform:uppercase;letter-spacing:0.05em}
+.prog{font-size:13px;color:#555;padding:5px 0 5px 14px;border-left:3px solid #c8ddf5;margin-bottom:5px;line-height:1.5}
+.prog strong{color:#1a1a1a;font-weight:600}
+.race-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0.75rem;margin-bottom:1rem}
+.race-step{border-radius:12px;padding:1rem;text-align:center}
+.race-step .rl{font-size:28px;font-weight:700;margin-bottom:4px}
+.race-step .rw{font-size:14px;font-weight:700;margin-bottom:4px}
+.race-step .rd{font-size:12px;line-height:1.5}
+.race-r{background:#fde8e8}.race-r .rl,.race-r .rw{color:#a32d2d}.race-r .rd{color:#7a2020}
+.race-a{background:#faeeda}.race-a .rl,.race-a .rw{color:#854f0b}.race-a .rd{color:#633806}
+.race-c{background:#e6f1fb}.race-c .rl,.race-c .rw{color:#0c447c}.race-c .rd{color:#042c53}
+.race-e{background:#eaf3de}.race-e .rl,.race-e .rw{color:#3b6d11}.race-e .rd{color:#173404}
+.asm-card{border-radius:12px;padding:0.85rem 1rem;margin-bottom:0.5rem;display:flex;gap:12px;align-items:flex-start}
+.asm-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.asm-title{font-size:14px;font-weight:600;margin-bottom:3px}
+.asm-desc{font-size:13px;line-height:1.5}
+.asm-gen{background:#e6f1fb}.asm-gen .asm-title{color:#0c447c}.asm-gen .asm-desc{color:#185fa5}
+.asm-off{background:#faeeda}.asm-off .asm-title{color:#854f0b}.asm-off .asm-desc{color:#633806}
+.asm-kit{background:#eaf3de}.asm-kit .asm-title{color:#3b6d11}.asm-kit .asm-desc{color:#27500a}
+.checks{list-style:none;padding:0}
+.checks li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#444;padding:8px 0;border-bottom:1px solid #eee;line-height:1.5}
+.checks li:last-child{border-bottom:none}
+.chk{width:20px;height:20px;border:2px solid #bbb;border-radius:5px;flex-shrink:0;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;background:#fff}
+.chk.on{background:#1a5fa8;border-color:#1a5fa8}
+.chk.on::after{content:'';display:block;width:5px;height:9px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg) translate(-1px,-1px)}
+.prog-wrap{background:#e8edf3;border-radius:99px;height:8px;overflow:hidden;margin-top:0.75rem}
+.prog-fill{background:linear-gradient(90deg,#1a5fa8,#e87722);height:100%;border-radius:99px;transition:width 0.3s}
+.prog-lbl{font-size:13px;color:#666;margin-top:6px}
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;border:1px solid #ddd;border-radius:12px;padding:1rem 1.25rem}
+.sig-field label{display:block;font-size:11px;color:#888;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600}
+.sig-field input{width:100%;font-size:14px;border:none;border-bottom:1px solid #ccc;background:transparent;color:#222;padding:4px 0;outline:none}
+.footer{background:linear-gradient(135deg,#1a5fa8,#0d3d6b);border-radius:14px;padding:1.5rem 2rem;display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;margin-top:1.5rem}
+.footer .fl{color:rgba(255,255,255,0.6);font-size:11px;text-transform:uppercase;letter-spacing:0.06em}
+.footer .fv{color:#fff;font-size:14px;font-weight:600;margin-top:2px}
+.nav-btns{display:flex;justify-content:space-between;margin-top:1rem}
+.floorplan-wrap{background:#f4f6f9;border-radius:12px;padding:1rem;overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="b">
+
+  <div class="hero">
+    <h1>Welcome to Bucaan Community House</h1>
+    <p class="sub">Staff &amp; volunteer induction 2024–2025 &nbsp;|&nbsp; 8 Bucaan St, Chigwell TAS 7011</p>
+    <div class="pills">
+      <span class="pill">Not-for-profit charity</span>
+      <span class="pill">DGR endorsed</span>
+      <span class="pill">Incorporated association</span>
+      <span class="pill">Community-led board</span>
+      <span class="pill">Child safe organisation</span>
+      <span class="pill">~40 years serving Chigwell</span>
+    </div>
+  </div>
+
+  <div class="aoc">
+    <p>Bucaan Community House acknowledges and pays respects to the Tasmanian Aboriginal community as the traditional and original owners, and continuing custodians of this land, and acknowledges Elders past, present and emerging.</p>
+  </div>
+
+  <div class="step-nav" id="nav">
+    <button class="step-btn active" onclick="goTo(0)">About BCH</button>
+    <button class="step-btn" onclick="goTo(1)">Child safe</button>
+    <button class="step-btn" onclick="goTo(2)">Our values</button>
+    <button class="step-btn" onclick="goTo(3)">Policies</button>
+    <button class="step-btn" onclick="goTo(4)">Programs</button>
+    <button class="step-btn" onclick="goTo(5)">Health &amp; hygiene</button>
+    <button class="step-btn" onclick="goTo(6)">Emergency</button>
+    <button class="step-btn" onclick="goTo(7)">Checklist</button>
+    <button class="step-btn" onclick="goTo(8)">Sign off</button>
+  </div>
+
+  <!-- 0: About -->
+  <div class="step-section visible" id="s0">
+    <div class="sec-title">About Bucaan Community House</div>
+    <div class="card"><div class="card-title">Who we are</div><p>Bucaan Community House Inc. (BCH) is a small not-for-profit charity — DGR endorsed — based in Chigwell, Tasmania, and has been operating for almost 40 years. We are a registered incorporated association governed by a community-led volunteer board of between 4 and 10 members, elected at our Annual General Meeting.</p><p>We work from a community development model, serving Austins Ferry, Berridale, Chigwell, Collinsvale, Claremont, Granton, Montrose and Rosetta.</p></div>
+    <div class="grid">
+      <div class="card"><div class="card-title">Our vision</div><p>To create a safe, supportive, and caring community.</p></div>
+      <div class="card"><div class="card-title">Our mission</div><p>To provide accessible local services and support which are valued by our community.</p></div>
+    </div>
+    <div class="stat-strip">
+      <div class="stat-box"><span class="stat-num">83</span><div class="stat-lbl">registered volunteers</div></div>
+      <div class="stat-box"><span class="stat-num">165+</span><div class="stat-lbl">volunteer hours/week</div></div>
+      <div class="stat-box"><span class="stat-num">46</span><div class="stat-lbl">activities 2024–25</div></div>
+      <div class="stat-box"><span class="stat-num">900+</span><div class="stat-lbl">people per week</div></div>
+      <div class="stat-box"><span class="stat-num">57</span><div class="stat-lbl">partner organisations</div></div>
+    </div>
+    <div class="card"><div class="card-title">Our governance</div><p>BCH is governed by a community-led volunteer board that met 17 times in 2024–2025, including the Chair, Vice Chair, Treasurer, Secretary and general members. Our CEO, Mary-Anne Evans, leads the staff team and is your key contact for any questions about your induction, role or policies.</p><p>As a DGR-endorsed registered charity and incorporated association, BCH meets compliance and governance obligations under Tasmanian and Commonwealth law.</p></div>
+    <div class="nav-btns"><span></span><button class="step-btn active" onclick="goTo(1)">Next: Child safe →</button></div>
+  </div>
+
+  <!-- 1: Child safe -->
+  <div class="step-section" id="s1">
+    <div class="sec-title">Child safe organisation</div>
+    <div class="purple-card"><div class="badge b-purple">Core commitment</div><div class="card-title">BCH is a child safe organisation</div><p style="margin-top:8px">Keeping vulnerable people and children safe is our top priority. We are committed to creating a safe and caring environment where children are protected from harm. Every child deserves to feel safe, valued, and heard.</p></div>
+    <div class="grid">
+      <div class="card"><div style="font-size:26px;margin-bottom:6px">📋</div><div class="card-title">WWVP &amp; police check</div><p>All staff and volunteers must hold a current WWVP registration AND a current police check before working with children or vulnerable people. Present both to Mary-Anne Evans (CEO) before commencing.</p></div>
+      <div class="card"><div style="font-size:26px;margin-bottom:6px">👁️</div><div class="card-title">Appropriate behaviour</div><p>Always interact with children in open, observable settings. Never be alone with a child in a closed or private space. Sign the Child Safe Code of Conduct (BCH_CF_30).</p></div>
+      <div class="card"><div style="font-size:26px;margin-bottom:6px">🚨</div><div class="card-title">Reporting concerns</div><p>Report any concerns immediately to Mary-Anne Evans: <strong>(03) 6249 5363</strong>. Child Protection Advice and Referral Line: <strong>1800 000 123</strong>. Immediate danger: <strong>000</strong>.</p></div>
+      <div class="card"><div style="font-size:26px;margin-bottom:6px">📱</div><div class="card-title">Online &amp; social media</div><p>Do not contact children through personal social media. Use official BCH channels only. Never photograph or film children without explicit written consent from a parent or guardian.</p></div>
+    </div>
+    <div class="nav-btns"><button class="step-btn" onclick="goTo(0)">← Back</button><button class="step-btn active" onclick="goTo(2)">Next: Our values →</button></div>
+  </div>
+
+  <!-- 2: Values -->
+  <div class="step-section" id="s2">
+    <div class="sec-title">Our values</div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+      <div class="val-card"><span class="val-icon">🤝</span><div class="val-title">Belonging</div><p class="val-desc">We support a real sense of belonging in our community.</p></div>
+      <div class="val-card"><span class="val-icon">💛</span><div class="val-title">Understanding</div><p class="val-desc">We behave with compassion and kindness to all.</p></div>
+      <div class="val-card"><span class="val-icon">🛡️</span><div class="val-title">Child safe</div><p class="val-desc">Children's safety and wellbeing are at the centre of our thought, values and actions.</p></div>
+      <div class="val-card"><span class="val-icon">✅</span><div class="val-title">Accountable</div><p class="val-desc">We listen, are open and responsive.</p></div>
+      <div class="val-card"><span class="val-icon">🏠</span><div class="val-title">Available</div><p class="val-desc">We are here for our community.</p></div>
+      <div class="val-card"><span class="val-icon">⚖️</span><div class="val-title">Non-judgemental</div><p class="val-desc">We avoid making moral judgements and behave in an ethical manner.</p></div>
+    </div>
+    <div class="card" style="margin-top:0.75rem"><div class="card-title">Statement of diversity</div><p>We are dedicated to creating an inclusive environment that values people's differences such as race, gender, age and background. We aim to challenge unfair biases, support underrepresented groups, and provide equal opportunities for everyone.</p></div>
+    <div class="nav-btns"><button class="step-btn" onclick="goTo(1)">← Back</button><button class="step-btn active" onclick="goTo(3)">Next: Policies →</button></div>
+  </div>
+
+  <!-- 3: Policies -->
+  <div class="step-section" id="s3">
+    <div class="sec-title">Policies &amp; procedures 2024–2025</div>
+    <div class="accent-card"><div class="card-title">How to access BCH policies</div><p>BCH has 55 current policies — all stored online only on the Microsoft 365 shared drive. There are no hard copies. Contact Mary-Anne Evans at <strong>(03) 6249 5363</strong> or <strong>coordinator@chigwellcommunity.org.au</strong> for access.</p></div>
+    <div class="grid" style="margin-bottom:0.75rem">
+      <div class="access-box"><div class="access-dot">☁️</div><div><div class="access-title">Microsoft 365 shared drive</div><div class="access-sub">55 policies, version-controlled online. Contact Mary-Anne for access.</div></div></div>
+      <div class="access-box"><div class="access-dot">❗</div><div><div class="access-title">Online only — no hard copies</div><div class="access-sub">Any printed copy is uncontrolled. Always refer to the online version.</div></div></div>
+    </div>
+    <div class="card">
+      <div class="badge b-teal">Key policies — all staff and volunteers must read these</div>
+      <div class="pol-group"><div class="pol-group-title">Child &amp; vulnerable people safety</div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_49</span><div><div class="pol-name">Child safe &amp; vulnerable people wellbeing policy</div><div class="pol-desc">Zero tolerance of abuse. WWVP, police checks, reporting and Code of Conduct.</div></div></div>
+      </div>
+      <div class="pol-group"><div class="pol-group-title">Work health &amp; safety</div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_40</span><div><div class="pol-name">Work health and safety policy</div><div class="pol-desc">Rights and responsibilities to maintain a safe workplace.</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_13</span><div><div class="pol-name">Incident, accident and near miss policy</div><div class="pol-desc">How to report all incidents. Workplace Standards Tasmania: 1300 366 322.</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_15</span><div><div class="pol-name">Safe chemical handling policy</div><div class="pol-desc">Cleaning products, fertilisers, fuel and other chemicals on site.</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_16</span><div><div class="pol-name">Physical resources policy</div><div class="pol-desc">Safe use of BCH facilities, equipment and vehicles.</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_34</span><div><div class="pol-name">Drug and alcohol policy</div><div class="pol-desc">No alcohol or drugs at work. Notify CEO of any medications affecting duties.</div></div></div>
+      </div>
+      <div class="pol-group"><div class="pol-group-title">Privacy, dignity &amp; confidentiality</div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_10</span><div><div class="pol-name">Privacy, dignity and confidentiality policy</div><div class="pol-desc">Protecting client information under the Privacy Act 1988 and Personal Information Protection Act 2004 (Tas).</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_12</span><div><div class="pol-name">Privacy rights policy — staff</div><div class="pol-desc">Staff and volunteer obligations to protect privacy of all house users.</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_22</span><div><div class="pol-name">Information management policy</div><div class="pol-desc">How BCH stores, manages and controls access to documents and records.</div></div></div>
+      </div>
+      <div class="pol-group"><div class="pol-group-title">Conduct &amp; workplace behaviour</div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_20</span><div><div class="pol-name">Code of conduct policy</div><div class="pol-desc">Standards of behaviour for all staff, volunteers, contractors and house users.</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_30</span><div><div class="pol-name">Anti-discrimination, harassment and bullying policy</div><div class="pol-desc">BCH's commitment to a workplace free from discrimination and bullying.</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_31</span><div><div class="pol-name">Conflict and grievance policy</div><div class="pol-desc">Step-by-step process for resolving conflict or grievances.</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_32</span><div><div class="pol-name">Conflict of interest policy</div><div class="pol-desc">How to declare and manage conflicts of interest.</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_41</span><div><div class="pol-name">Diversity and cultural inclusion policy</div><div class="pol-desc">Respecting and valuing diversity of customs, cultures, abilities and beliefs.</div></div></div>
+      </div>
+      <div class="pol-group"><div class="pol-group-title">Complaints &amp; wellbeing</div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_03</span><div><div class="pol-name">Complaints &amp; compliments management policy</div><div class="pol-desc">How BCH receives, records and resolves complaints.</div></div></div>
+        <div class="pol-row"><span class="pol-code">BCH_POL_11</span><div><div class="pol-name">Emotional wellbeing policy</div><div class="pol-desc">BCH's commitment to mental health and wellbeing of staff, volunteers and clients.</div></div></div>
+      </div>
+      <p style="font-size:13px;color:#666;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid #eee">The full suite of 55 BCH policies is on the shared drive. Contact Mary-Anne Evans if unsure which policies apply to your role.</p>
+    </div>
+    <div class="nav-btns"><button class="step-btn" onclick="goTo(2)">← Back</button><button class="step-btn active" onclick="goTo(4)">Next: Programs →</button></div>
+  </div>
+
+  <!-- 4: Programs -->
+  <div class="step-section" id="s4">
+    <div class="sec-title">Current programs &amp; activities</div>
+    <div class="card">
+      <div class="badge b-green">Currently running — 2025</div>
+      <div class="day-label">Monday</div>
+      <div class="prog"><strong>Pilates</strong> — 1.15–2.15pm, $2, Barn. All ages, fitness-friendly. No floor work.</div>
+      <div class="prog"><strong>Best Foot Forward Walking Group</strong> — Free, various times &amp; locations.</div>
+      <div class="day-label">Tuesday</div>
+      <div class="prog"><strong>Photography Group</strong> — 10am–12pm, Free. Call the house to join.</div>
+      <div class="prog"><strong>Mission Australia Home Handy Workshop</strong> — 10.30–11.30am monthly, Free.</div>
+      <div class="prog"><strong>Go Exercise</strong> — 11.45am–12.45pm, $5. All ages and fitness levels.</div>
+      <div class="prog"><strong>Craft Group</strong> — 1–3pm, Free/BYO project. Not a community lunch day.</div>
+      <div class="prog"><strong>Moreton Clinic</strong> — 1.30–4.30pm, booking required, every 2nd week.</div>
+      <div class="prog"><strong>Crewative Arts Connect</strong> — 3.30–5.30pm, Free. Arts for creative youth.</div>
+      <div class="prog"><strong>Boots &amp; All Line Dancing</strong> — Beginners 5.30–6.30pm ($8), Improvers 6.30–7.30pm ($4). 57 Federal St, North Hobart.</div>
+      <div class="day-label">Wednesday</div>
+      <div class="prog"><strong>Grandparents/Relatives &amp; Carers Support Group</strong> — 10am–1pm fortnightly, Free. BAPTCARE. Ph: 6212 9800.</div>
+      <div class="prog"><strong>Games Day</strong> — 1–3pm, Free. Cards and board games (BYO).</div>
+      <div class="prog"><strong>Crewative Arts Connect</strong> — 3.30–5.30pm, Free.</div>
+      <div class="day-label">Thursday</div>
+      <div class="prog"><strong>Boots &amp; All Line Dancing</strong> — 10–11am ($3). Moonah Sports Centre, 17 Gormanston Rd. Rubber-soled shoes required.</div>
+      <div class="prog"><strong>Healthy Hearts</strong> — 10–11am, $7. All ages, gentle movement for heart health.</div>
+      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid #eee">
+        <div class="badge b-blue">Free ongoing programs</div>
+        <div class="prog">U-CAAN Drive &nbsp;|&nbsp; NiLS Loans &nbsp;|&nbsp; Community Connector &nbsp;|&nbsp; Centrelink Support &nbsp;|&nbsp; Community Lunches &nbsp;|&nbsp; Chigwell Community Garden</div>
+      </div>
+    </div>
+    <div class="nav-btns"><button class="step-btn" onclick="goTo(3)">← Back</button><button class="step-btn active" onclick="goTo(5)">Next: Health &amp; hygiene →</button></div>
+  </div>
+
+  <!-- 5: Health & Hygiene -->
+  <div class="step-section" id="s5">
+    <div class="sec-title">Health, safety &amp; hygiene</div>
+    <div class="grid">
+      <div class="card"><div style="font-size:24px;margin-bottom:6px">🧼</div><div class="card-title">Hand hygiene</div><p>Wash and/or sanitise on every entry. Follow the posted procedure in bathrooms and the kitchen. Sanitiser is 70% alcohol-based — let it dry fully.</p></div>
+      <div class="card"><div style="font-size:24px;margin-bottom:6px">🧹</div><div class="card-title">Surface sanitising</div><p>Sanitise all surfaces you touch — chairs, door handles, light switches, tables, benches, and the urn/tea and coffee area. Disinfectant wipes are provided.</p></div>
+      <div class="card"><div style="font-size:24px;margin-bottom:6px">🤧</div><div class="card-title">Cough &amp; sneeze etiquette</div><p>Always cough or sneeze into your elbow or a disposable tissue. Dispose of tissues immediately and wash your hands.</p></div>
+      <div class="card"><div style="font-size:24px;margin-bottom:6px">🏠</div><div class="card-title">If you are unwell</div><p>Stay home if you have any symptoms. Notify Mary-Anne Evans at <strong>(03) 6249 5363</strong> as soon as possible.</p></div>
+      <div class="card"><div style="font-size:24px;margin-bottom:6px">😷</div><div class="card-title">PPE</div><p>Masks and gloves are available near the entry. Take only what you need. Mask requirements will be communicated by Mary-Anne Evans.</p></div>
+      <div class="card"><div style="font-size:24px;margin-bottom:6px">🚗</div><div class="card-title">BCH vehicles</div><p>All vehicles carry sanitiser, wipes, gloves, rubbish bags and masks. Wipe all touched surfaces before leaving and between pickups. Remove all waste when finished.</p></div>
+    </div>
+    <div class="accent-card"><div class="badge b-orange">During any infectious disease outbreak</div><div class="card-title">Additional measures may be reinstated</div><p>BCH may require temperature checks (normal 36.6°C — 37.2°C or above means you must leave), mandatory masks, room capacity limits, and restricted building access. These will be communicated by Mary-Anne Evans.</p></div>
+    <div class="nav-btns"><button class="step-btn" onclick="goTo(4)">← Back</button><button class="step-btn active" onclick="goTo(6)">Next: Emergency →</button></div>
+  </div>
+
+  <!-- 6: Emergency -->
+  <div class="step-section" id="s6">
+    <div class="sec-title">Emergency evacuation — 8 Bucaan St, Chigwell</div>
+    <div class="red-card"><div class="card-title">In any emergency — call 000 immediately. From a mobile: 112.</div><p>Your priority is always the safety of people first. Do not attempt to fight a fire unless it is very small, safe to do so, and you have already raised the alarm.</p></div>
+    <div class="race-grid">
+      <div class="race-step race-r"><div class="rl">R</div><div class="rw">Remove</div><div class="rd">Remove people from the immediate danger area to a place of safety</div></div>
+      <div class="race-step race-a"><div class="rl">A</div><div class="rw">Alert</div><div class="rd">Alert all nearby staff, volunteers and visitors — raise the alarm</div></div>
+      <div class="race-step race-c"><div class="rl">C</div><div class="rw">Confine</div><div class="rd">Close windows and doors if safe to do so to contain fire and smoke</div></div>
+      <div class="race-step race-e"><div class="rl">E</div><div class="rw">Extinguish</div><div class="rd">Extinguish only if safe — never put yourself at risk</div></div>
+    </div>
+    <div class="card" style="margin-bottom:0.75rem"><div class="card-title">Evacuation stages</div>
+      <p><strong>Stage 1</strong> — Remove all people from the immediate danger area to safety.</p>
+      <p><strong>Stage 2</strong> — Complete evacuation of the entire building.</p>
+      <p><strong>Stage 3</strong> — Roll call. Ensure all occupants are accounted for. Report missing persons to the Tasmanian Fire Service.</p>
+      <p><strong>Stage 4</strong> — Move to your designated assembly area.</p>
+    </div>
+    <div class="sec-title" style="margin-top:1.5rem">Assembly areas</div>
+    <div class="asm-card asm-gen"><div class="asm-icon">🟢</div><div><div class="asm-title">General assembly area</div><div class="asm-desc">Exit via the front door facing the car park — move to the steps in front of the Barn.</div></div></div>
+    <div class="asm-card asm-off"><div class="asm-icon">🟠</div><div><div class="asm-title">Fire in the offices</div><div class="asm-desc">Exit via the safest exit to the front of the building — proceed to the Gazebo facing Bucaan Street.</div></div></div>
+    <div class="asm-card asm-kit"><div class="asm-icon">🔵</div><div><div class="asm-title">Fire in the kitchen</div><div class="asm-desc">Exit via the front door facing the car park — move to the steps in front of the Barn.</div></div></div>
+    <div class="sec-title" style="margin-top:1.5rem">Building floor plan</div>
+    <div class="floorplan-wrap">
+      <svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:0 auto">
+        <rect width="680" height="420" fill="transparent"/>
+        <rect x="30" y="30" width="540" height="300" rx="4" fill="#f8f9fa" stroke="#1a5fa8" stroke-width="2.5"/>
+        <line x1="390" y1="30" x2="390" y2="330" stroke="#1a5fa8" stroke-width="1.5"/>
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#1a5fa8" stroke-width="1.5"/>
+        <line x1="30" y1="230" x2="180" y2="230" stroke="#1a5fa8" stroke-width="1.5"/>
+        <line x1="180" y1="170" x2="180" y2="330" stroke="#1a5fa8" stroke-width="1.5"/>
+        <line x1="270" y1="170" x2="270" y2="220" stroke="#1a5fa8" stroke-width="1.5"/>
+        <line x1="270" y1="220" x2="390" y2="220" stroke="#1a5fa8" stroke-width="1.5"/>
+        <line x1="390" y1="120" x2="570" y2="120" stroke="#1a5fa8" stroke-width="1.5"/>
+        <line x1="480" y1="30" x2="480" y2="120" stroke="#1a5fa8" stroke-width="1.5"/>
+        <line x1="390" y1="200" x2="570" y2="200" stroke="#1a5fa8" stroke-width="1.5"/>
+        <line x1="460" y1="200" x2="460" y2="330" stroke="#1a5fa8" stroke-width="1.5"/>
+        <text x="110" y="110" text-anchor="middle" font-size="13" fill="#1a5fa8" font-weight="500">Group room</text>
+        <text x="95" y="260" text-anchor="middle" font-size="13" fill="#1a5fa8" font-weight="500">Main room</text>
+        <text x="90" y="205" text-anchor="middle" font-size="12" fill="#1a5fa8">Kitchen</text>
+        <text x="315" y="285" text-anchor="middle" font-size="11" fill="#888">Corridor</text>
+        <text x="432" y="75" text-anchor="middle" font-size="12" fill="#1a5fa8">Toilet</text>
+        <text x="525" y="75" text-anchor="middle" font-size="12" fill="#1a5fa8">Office 3</text>
+        <text x="480" y="165" text-anchor="middle" font-size="12" fill="#1a5fa8">Office 2</text>
+        <text x="480" y="270" text-anchor="middle" font-size="12" fill="#1a5fa8">Office 1</text>
+        <text x="515" y="295" text-anchor="middle" font-size="12" fill="#1a5fa8">Reception</text>
+        <rect x="30" y="55" width="10" height="38" rx="2" fill="#e24b4a"/>
+        <text x="25" y="67" font-size="8" fill="#a32d2d" font-weight="600" transform="rotate(-90,25,67)">EXIT</text>
+        <rect x="30" y="240" width="10" height="38" rx="2" fill="#e24b4a"/>
+        <text x="25" y="252" font-size="8" fill="#a32d2d" font-weight="600" transform="rotate(-90,25,252)">EXIT</text>
+        <rect x="540" y="290" width="30" height="10" rx="2" fill="#e24b4a"/>
+        <text x="548" y="308" font-size="8" fill="#a32d2d" font-weight="600">EXIT</text>
+        <line x1="70" y1="100" x2="45" y2="74" stroke="#e24b4a" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="100" y1="260" x2="45" y2="259" stroke="#e24b4a" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="480" y1="260" x2="548" y2="295" stroke="#e24b4a" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#e24b4a"/></marker></defs>
+        <circle cx="200" cy="185" r="7" fill="#e24b4a" opacity="0.85"/><text x="200" y="189" text-anchor="middle" font-size="9" fill="white" font-weight="700">F</text>
+        <circle cx="400" cy="240" r="7" fill="#e24b4a" opacity="0.85"/><text x="400" y="244" text-anchor="middle" font-size="9" fill="white" font-weight="700">F</text>
+        <rect x="193" y="310" width="14" height="10" rx="2" fill="#1a5fa8" opacity="0.75"/><text x="200" y="319" text-anchor="middle" font-size="7" fill="white">FB</text>
+        <rect x="30" y="340" width="540" height="50" rx="4" fill="#e6f1fb" stroke="#b5d4f4" stroke-width="1"/>
+        <text x="300" y="371" text-anchor="middle" font-size="13" fill="#185fa5">Car park</text>
+        <rect x="255" y="390" width="90" height="26" rx="6" fill="#1a5fa8"/>
+        <text x="300" y="407" text-anchor="middle" font-size="11" fill="white" font-weight="500">▲ Assembly</text>
+        <rect x="580" y="200" width="80" height="80" rx="4" fill="#faeeda" stroke="#e87722" stroke-width="1.5"/>
+        <text x="620" y="242" text-anchor="middle" font-size="12" fill="#c05a00" font-weight="500">Barn</text>
+        <text x="620" y="258" text-anchor="middle" font-size="10" fill="#c05a00">↑ steps</text>
+        <text x="620" y="272" text-anchor="middle" font-size="10" fill="#c05a00">assembly</text>
+        <rect x="580" y="30" width="80" height="50" rx="4" fill="#eeedfe" stroke="#7f77dd" stroke-width="1.5"/>
+        <text x="620" y="58" text-anchor="middle" font-size="11" fill="#3c3489">Gazebo</text>
+        <text x="620" y="72" text-anchor="middle" font-size="10" fill="#3c3489">Bucaan St</text>
+        <rect x="30" y="380" width="210" height="36" rx="6" fill="#f4f6f9" stroke="#ddd" stroke-width="0.5"/>
+        <circle cx="50" cy="393" r="5" fill="#e24b4a"/><text x="60" y="397" font-size="10" fill="#666">Fire extinguisher</text>
+        <rect x="43" y="403" width="10" height="7" rx="1" fill="#1a5fa8" opacity="0.75"/><text x="60" y="412" font-size="10" fill="#666">Fire blanket</text>
+        <line x1="148" y1="393" x2="168" y2="393" stroke="#e24b4a" stroke-width="1.5" stroke-dasharray="4,2"/>
+        <text x="173" y="397" font-size="10" fill="#666">Exit route</text>
+        <rect x="148" y="404" width="18" height="10" rx="2" fill="#e24b4a"/><text x="173" y="412" font-size="10" fill="#666">Exit door</text>
+      </svg>
+    </div>
+    <div class="card" style="margin-top:0.75rem"><div class="card-title">After the evacuation</div><p>Conduct a roll call at the assembly point immediately. Report missing persons to the Tasmanian Fire Service when they arrive. Do not re-enter the building until given the all-clear. Report all incidents to Mary-Anne Evans using BCH_CF_16.</p><p style="margin-top:8px"><strong>Emergency: 000 &nbsp;|&nbsp; Mobile: 112 &nbsp;|&nbsp; Workplace Standards Tasmania: 1300 366 322 &nbsp;|&nbsp; Mary-Anne Evans (CEO): (03) 6249 5363</strong></p></div>
+    <div class="nav-btns"><button class="step-btn" onclick="goTo(5)">← Back</button><button class="step-btn active" onclick="goTo(7)">Next: Checklist →</button></div>
+  </div>
+
+  <!-- 7: Checklist -->
+  <div class="step-section" id="s7">
+    <div class="sec-title">Your responsibilities — induction checklist</div>
+    <div class="card">
+      <ul class="checks">
+        <li><div class="chk" onclick="tick(this)"></div><span>I hold a current WWVP registration and police check and have provided both to Mary-Anne Evans (CEO).</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I understand and will uphold BCH's child safe culture, always prioritising the safety and wellbeing of children and young people.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I will report any child safety concerns immediately to Mary-Anne Evans, and understand I can contact the Child Protection Advice and Referral Line on 1800 000 123, or 000 in an emergency.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I have signed (or will sign) the Child Safe Code of Conduct (BCH_CF_30).</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I understand BCH's vision, mission and values and will act in accordance with them.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I understand BCH is a not-for-profit incorporated association with DGR status, governed by a community-led volunteer board.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I have been given access to the BCH Microsoft 365 shared drive and understand all 55 policies are online only — no hard copies.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I have read or will read the key policies in this induction, including the Code of Conduct, Child Safe Policy, WHS Policy, Privacy Policy and Complaints Policy.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I know the BCH fire and evacuation procedure (RACE) and my designated assembly area.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I know to call 000 (or 112 from a mobile) in any emergency, and to report all incidents to Mary-Anne Evans using BCH_CF_16.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I will stay home if unwell and notify Mary-Anne Evans as soon as possible.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I will wash and sanitise my hands on entry and regularly throughout my time at BCH.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I will sanitise all surfaces I touch before and after use.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I will follow all BCH signage, directions and current health and safety guidelines.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I will follow vehicle hygiene procedures when using BCH vehicles.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I will behave in accordance with BCH's Code of Conduct and treat all people with dignity and respect.</span></li>
+        <li><div class="chk" onclick="tick(this)"></div><span>I will raise any safety, wellbeing or conduct concerns with Mary-Anne Evans promptly and without fear of retribution.</span></li>
+      </ul>
+      <div class="prog-wrap"><div class="prog-fill" id="pfill" style="width:0%"></div></div>
+      <div class="prog-lbl" id="plbl">0 of 17 items completed.</div>
+    </div>
+    <div class="nav-btns"><button class="step-btn" onclick="goTo(6)">← Back</button><button class="step-btn active" onclick="goTo(8)">Next: Sign off →</button></div>
+  </div>
+
+  <!-- 8: Sign off -->
+  <div class="step-section" id="s8">
+    <div class="sec-title">Induction acknowledgement &amp; sign-off</div>
+    <div class="card">
+      <p style="margin-bottom:1.25rem;font-size:14px;color:#555">By completing the fields below, I confirm I have read and understood the BCH induction and agree to abide by BCH's policies and procedures, including the Child Safe Policy, Code of Conduct and Emergency Evacuation procedures.</p>
+      <div class="sig-grid">
+        <div class="sig-field"><label>Full name</label><input type="text" placeholder="Your full name"/></div>
+        <div class="sig-field"><label>Role</label><input type="text" placeholder="e.g. Volunteer — Craft Group"/></div>
+        <div class="sig-field"><label>WWVP registration number</label><input type="text" placeholder="Your WWVP number"/></div>
+        <div class="sig-field"><label>Police check date</label><input type="text" placeholder="DD/MM/YYYY"/></div>
+        <div class="sig-field"><label>Date of induction</label><input type="text" placeholder="DD/MM/YYYY"/></div>
+        <div class="sig-field"><label>CEO sign-off (Mary-Anne Evans)</label><input type="text" placeholder="Confirmed by"/></div>
+      </div>
+      <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid #eee">
+        <p style="font-size:13px;color:#666">Once complete, this record will be retained in accordance with BCH_POL_22. Contact Mary-Anne Evans at <strong>(03) 6249 5363</strong> or <strong>coordinator@chigwellcommunity.org.au</strong> with any questions.</p>
+      </div>
+    </div>
+    <div class="footer">
+      <div><div class="fl">CEO</div><div class="fv">Mary-Anne Evans</div></div>
+      <div><div class="fl">Phone</div><div class="fv">(03) 6249 5363</div></div>
+      <div><div class="fl">Email</div><div class="fv">coordinator@chigwellcommunity.org.au</div></div>
+      <div><div class="fl">Address</div><div class="fv">8 Bucaan St, Chigwell TAS 7011</div></div>
+      <div><div class="fl">Website</div><div class="fv">www.chigwellcommunity.org.au</div></div>
+    </div>
+    <div class="nav-btns"><button class="step-btn" onclick="goTo(7)">← Back to checklist</button><span></span></div>
+  </div>
+
+</div>
+<script>
+var cur=0;
+var secs=document.querySelectorAll('.step-section');
+function goTo(n){
+  secs[cur].classList.remove('visible');
+  cur=n;
+  secs[cur].classList.add('visible');
+  document.querySelectorAll('#nav .step-btn').forEach(function(b,i){b.classList.toggle('active',i===n)});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function tick(el){
+  el.classList.toggle('on');
+  var all=document.querySelectorAll('.chk');
+  var done=document.querySelectorAll('.chk.on').length;
+  var pct=Math.round((done/all.length)*100);
+  document.getElementById('pfill').style.width=pct+'%';
+  var lbl=document.getElementById('plbl');
+  if(pct===100){lbl.textContent='All '+all.length+' items completed — ready to sign off!';lbl.style.color='#1a5fa8';}
+  else{lbl.textContent=done+' of '+all.length+' items completed.';lbl.style.color='';}
+}
+</script>
+</body>
+</html>
