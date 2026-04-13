@@ -6,6 +6,11 @@
 <title>BCH Staff & Volunteer Induction 2024–2025</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+@media print{
+  body > *{display:none!important}
+  #cert-overlay{display:block!important;position:static!important;background:none!important}
+  #cert-overlay > div > div:last-child{display:none!important}
+}
 body{font-family:Arial,Helvetica,sans-serif;color:#222;background:#f4f6f9;padding:1rem}
 .b{max-width:840px;margin:0 auto;padding:1rem 1.25rem 3rem}
 .hero{background:linear-gradient(135deg,#1a5fa8 60%,#e87722 100%);border-radius:16px;padding:2.5rem 2rem 2rem;margin-bottom:2rem}
@@ -470,11 +475,10 @@ function generateCert(){
 }
 function closeCert(){document.getElementById('cert-overlay').style.display='none';}
 function printCert(){
-  var c=document.getElementById('cert-box').innerHTML;
-  var w=window.open('','_blank');
-  w.document.write('<html><head><title>BCH Certificate of Induction</title><style>body{font-family:Arial,sans-serif;margin:2rem;color:#222}@media print{button{display:none}}</style></head><body>'+c+'</body></html>');
-  w.document.close();
-  w.print();
+  var btns=document.querySelectorAll('#cert-overlay button');
+  btns.forEach(function(b){b.style.display='none'});
+  window.print();
+  btns.forEach(function(b){b.style.display=''});
 }
 </script>
 </body>
