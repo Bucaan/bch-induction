@@ -392,6 +392,7 @@ body{font-family:Arial,Helvetica,sans-serif;color:#222;background:#f4f6f9;paddin
     </div>
     <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid #eee;text-align:center">
       <p style="font-size:13px;color:#888;margin-bottom:1rem">Fill in your name, role, date and CEO sign-off above, then generate your certificate.</p>
+      <div id="cert-msg" style="font-size:13px;margin-bottom:.75rem;min-height:1.2em"></div>
       <button class="cert-gen-btn" id="gen-btn" onclick="showCert()">Generate certificate of completion</button>
     </div>
     <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid #eee">
@@ -444,14 +445,16 @@ body{font-family:Arial,Helvetica,sans-serif;color:#222;background:#f4f6f9;paddin
 var cur = 0;
 
 function goTo(n) {
-  document.getElementById('s' + cur).classList.remove('on');
-  cur = n;
-  document.getElementById('s' + cur).classList.add('on');
-  var btns = document.querySelectorAll('#nav .step-btn');
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].classList.toggle('active', i === n);
-  }
-  window.scrollTo(0, 0);
+  try {
+    document.getElementById('s' + cur).classList.remove('on');
+    cur = n;
+    document.getElementById('s' + cur).classList.add('on');
+    var btns = document.querySelectorAll('#nav .step-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle('active', i === n);
+    }
+    window.scrollTo(0, 0);
+  } catch(e) { console.log(e); }
 }
 
 function tick(el) {
@@ -468,6 +471,7 @@ function tick(el) {
     lbl.textContent = done + ' of ' + all.length + ' items completed.';
     lbl.style.color = '';
   }
+  checkBtn();
 }
 
 function checkBtn() {
@@ -475,11 +479,23 @@ function checkBtn() {
   var r = document.getElementById('f-role').value.trim();
   var d = document.getElementById('f-date').value.trim();
   var c = document.getElementById('f-ceo').value.trim();
+  var all = document.querySelectorAll('.chk');
+  var done = document.querySelectorAll('.chk.on').length;
+  var allTicked = (done === all.length);
   var btn = document.getElementById('gen-btn');
-  if (n && r && d && c) {
+  var msg = document.getElementById('cert-msg');
+  if (n && r && d && c && allTicked) {
     btn.classList.add('ready');
+    msg.textContent = '';
   } else {
     btn.classList.remove('ready');
+    if (!allTicked) {
+      msg.textContent = 'Please complete all ' + all.length + ' checklist items on the Checklist tab before generating your certificate. (' + done + ' of ' + all.length + ' completed)';
+      msg.style.color = '#a32d2d';
+    } else {
+      msg.textContent = 'Please fill in your name, role, date and CEO sign-off above.';
+      msg.style.color = '#854f0b';
+    }
   }
 }
 
