@@ -370,6 +370,7 @@ body{font-family:Arial,Helvetica,sans-serif;color:#222;background:#f4f6f9;paddin
       <div class="prog-lbl" id="plbl">0 of 17 items completed.</div>
     </div>
     <div class="nav-btns"><button class="step-btn" onclick="goTo(6)">← Back</button><button class="step-btn active" onclick="goTo(8)">Next: Sign off →</button></div>
+    
   </div>
 
   <!-- 8: Sign off -->
@@ -378,15 +379,19 @@ body{font-family:Arial,Helvetica,sans-serif;color:#222;background:#f4f6f9;paddin
     <div class="card">
       <p style="margin-bottom:1.25rem;font-size:14px;color:#555">By completing the fields below, I confirm I have read and understood the BCH induction and agree to abide by BCH's policies and procedures, including the Child Safe Policy, Code of Conduct and Emergency Evacuation procedures.</p>
       <div class="sig-grid">
-        <div class="sig-field"><label>Full name</label><input type="text" placeholder="Your full name"/></div>
-        <div class="sig-field"><label>Role</label><input type="text" placeholder="e.g. Volunteer — Craft Group"/></div>
-        <div class="sig-field"><label>WWVP registration number</label><input type="text" placeholder="Your WWVP number"/></div>
-        <div class="sig-field"><label>Police check date</label><input type="text" placeholder="DD/MM/YYYY"/></div>
-        <div class="sig-field"><label>Date of induction</label><input type="text" placeholder="DD/MM/YYYY"/></div>
-        <div class="sig-field"><label>CEO sign-off (Mary-Anne Evans)</label><input type="text" placeholder="Confirmed by"/></div>
+        <div class="sig-field"><label>Full name</label><input type="text" id="cert-name" placeholder="Your full name" oninput="checkCert()"/></div>
+        <div class="sig-field"><label>Role</label><input type="text" id="cert-role" placeholder="e.g. Volunteer — Craft Group" oninput="checkCert()"/></div>
+        <div class="sig-field"><label>WWVP registration number</label><input type="text" id="cert-wwvp" placeholder="Your WWVP number"/></div>
+        <div class="sig-field"><label>Police check date</label><input type="text" id="cert-police" placeholder="DD/MM/YYYY"/></div>
+        <div class="sig-field"><label>Date of induction</label><input type="text" id="cert-date" placeholder="DD/MM/YYYY" oninput="checkCert()"/></div>
+        <div class="sig-field"><label>CEO sign-off (Mary-Anne Evans)</label><input type="text" id="cert-ceo" placeholder="Confirmed by" oninput="checkCert()"/></div>
       </div>
       <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid #eee">
         <p style="font-size:13px;color:#666">Once complete, this record will be retained in accordance with BCH_POL_22. Contact Mary-Anne Evans at <strong>(03) 6249 5363</strong> or <strong>coordinator@chigwellcommunity.org.au</strong> with any questions.</p>
+      </div>
+      <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid #eee;text-align:center">
+        <p style="font-size:13px;color:#888;margin-bottom:1rem">Fill in your name, role, date and CEO sign-off above, then generate your certificate of completion.</p>
+        <button id="cert-btn" onclick="generateCert()" style="background:#1a5fa8;color:#fff;border:none;border-radius:99px;padding:12px 32px;font-size:15px;font-weight:600;cursor:pointer;opacity:0.4;pointer-events:none">Generate certificate of completion</button>
       </div>
     </div>
     <div class="footer">
@@ -399,26 +404,77 @@ body{font-family:Arial,Helvetica,sans-serif;color:#222;background:#f4f6f9;paddin
     <div class="nav-btns"><button class="step-btn" onclick="goTo(7)">← Back to checklist</button><span></span></div>
   </div>
 
+  <!-- Certificate (hidden, prints only) -->
+  <div id="cert-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:999;align-items:center;justify-content:center">
+    <div id="cert-box" style="background:#fff;border-radius:16px;padding:3rem;max-width:680px;width:90%;text-align:center;position:relative">
+      <button onclick="closeCert()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:20px;cursor:pointer;color:#888">✕</button>
+      <div style="border:4px solid #1a5fa8;border-radius:12px;padding:2rem">
+        <div style="background:linear-gradient(135deg,#1a5fa8,#e87722);border-radius:8px;padding:1rem;margin-bottom:1.5rem">
+          <div style="color:#fff;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px">Bucaan Community House Inc.</div>
+          <div style="color:#fff;font-size:22px;font-weight:700">Certificate of Induction</div>
+        </div>
+        <p style="font-size:14px;color:#666;margin-bottom:0.5rem">This is to certify that</p>
+        <div id="cert-display-name" style="font-size:26px;font-weight:700;color:#1a5fa8;margin:0.5rem 0"></div>
+        <div id="cert-display-role" style="font-size:14px;color:#888;margin-bottom:1.5rem"></div>
+        <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:1.5rem">has successfully completed the Bucaan Community House Staff &amp; Volunteer Induction 2024–2025, including the Child Safe Policy, Code of Conduct, Work Health &amp; Safety, Emergency Evacuation procedures and all key BCH policies.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+          <div style="background:#f4f6f9;border-radius:8px;padding:0.75rem">
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Date completed</div>
+            <div id="cert-display-date" style="font-size:14px;font-weight:600;color:#1a1a1a"></div>
+          </div>
+          <div style="background:#f4f6f9;border-radius:8px;padding:0.75rem">
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">WWVP number</div>
+            <div id="cert-display-wwvp" style="font-size:14px;font-weight:600;color:#1a1a1a"></div>
+          </div>
+          <div style="background:#f4f6f9;border-radius:8px;padding:0.75rem">
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Authorised by</div>
+            <div style="font-size:14px;font-weight:600;color:#1a1a1a">Mary-Anne Evans</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid #eee;padding-top:1rem;display:flex;justify-content:space-between;align-items:center">
+          <div style="text-align:left">
+            <div style="font-size:11px;color:#888">CEO signature</div>
+            <div id="cert-display-ceo" style="font-size:14px;font-weight:600;color:#1a1a1a;margin-top:4px;font-style:italic"></div>
+          </div>
+          <div style="text-align:right;font-size:11px;color:#aaa">BCH_CF_05 Induction Record<br>Retain in accordance with BCH_POL_22</div>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center">
+        <button onclick="printCert()" style="background:#1a5fa8;color:#fff;border:none;border-radius:99px;padding:10px 28px;font-size:14px;font-weight:600;cursor:pointer">Print / Save as PDF</button>
+        <button onclick="closeCert()" style="background:#f4f6f9;color:#555;border:none;border-radius:99px;padding:10px 28px;font-size:14px;font-weight:600;cursor:pointer">Close</button>
+      </div>
+    </div>
+  </div>
+
 </div>
 <script>
 var cur=0;
 var secs=document.querySelectorAll('.step-section');
-function goTo(n){
-  secs[cur].classList.remove('visible');
-  cur=n;
-  secs[cur].classList.add('visible');
-  document.querySelectorAll('#nav .step-btn').forEach(function(b,i){b.classList.toggle('active',i===n)});
-  window.scrollTo({top:0,behavior:'smooth'});
+function checkCert(){
+  var n=document.getElementById('cert-name').value.trim();
+  var r=document.getElementById('cert-role').value.trim();
+  var d=document.getElementById('cert-date').value.trim();
+  var c=document.getElementById('cert-ceo').value.trim();
+  var btn=document.getElementById('cert-btn');
+  if(n&&r&&d&&c){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+  else{btn.style.opacity='0.4';btn.style.pointerEvents='none';}
 }
-function tick(el){
-  el.classList.toggle('on');
-  var all=document.querySelectorAll('.chk');
-  var done=document.querySelectorAll('.chk.on').length;
-  var pct=Math.round((done/all.length)*100);
-  document.getElementById('pfill').style.width=pct+'%';
-  var lbl=document.getElementById('plbl');
-  if(pct===100){lbl.textContent='All '+all.length+' items completed — ready to sign off!';lbl.style.color='#1a5fa8';}
-  else{lbl.textContent=done+' of '+all.length+' items completed.';lbl.style.color='';}
+function generateCert(){
+  document.getElementById('cert-display-name').textContent=document.getElementById('cert-name').value;
+  document.getElementById('cert-display-role').textContent=document.getElementById('cert-role').value;
+  document.getElementById('cert-display-date').textContent=document.getElementById('cert-date').value;
+  document.getElementById('cert-display-wwvp').textContent=document.getElementById('cert-wwvp').value||'Provided separately';
+  document.getElementById('cert-display-ceo').textContent=document.getElementById('cert-ceo').value;
+  var o=document.getElementById('cert-overlay');
+  o.style.display='flex';
+}
+function closeCert(){document.getElementById('cert-overlay').style.display='none';}
+function printCert(){
+  var c=document.getElementById('cert-box').innerHTML;
+  var w=window.open('','_blank');
+  w.document.write('<html><head><title>BCH Certificate of Induction</title><style>body{font-family:Arial,sans-serif;margin:2rem;color:#222}@media print{button{display:none}}</style></head><body>'+c+'</body></html>');
+  w.document.close();
+  w.print();
 }
 </script>
 </body>
